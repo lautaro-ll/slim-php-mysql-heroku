@@ -28,6 +28,8 @@ $app->group('/usuarios', function (RouteCollectorProxy $group) {
     $group->get('[/]', \UsuarioController::class . ':TraerTodos');
     $group->get('/{usuario}', \UsuarioController::class . ':TraerUno');
     $group->post('[/]', \UsuarioController::class . ':CargarUno');
+    //modificar
+    //borrar
   });
 
 $app->get('[/]', function (Request $request, Response $response) {    
