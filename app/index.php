@@ -27,6 +27,7 @@ $VerificarUserYPass = function ($request, $response, $next) {
  
     $response->getBody()->write("Entré al MW!");
     $ArrayDeParametros = $request->getParsedBody();
+    var_dump($ArrayDeParametros);
     $usuario=$ArrayDeParametros['usuario'];
     $clave=$ArrayDeParametros['clave'];
 
