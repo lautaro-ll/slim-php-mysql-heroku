@@ -23,6 +23,21 @@ $app = AppFactory::create();
 $app->addErrorMiddleware(true, true, true);
 
 
+$VerificarUserYPass = function($request, $response, $next) {
+ 
+    $response->getBody()->write("Entré al MW!");
+    $ArrayDeParametros = $request->getParsedBody();
+    $usuario=$ArrayDeParametros['usuario'];
+    $clave=$ArrayDeParametros['clave'];
+
+    if($usuario=="administrador" && $clave=="1234")
+    {
+      $response->getBody()->write("<h3>Bienvenido $usuario </h3>");
+      $response = $next($request, $response);
+    }
+  return $response;  
+};
+
 // Routes
 $app->group('/usuarios', function (RouteCollectorProxy $group) {
     $group->get('[/]', \UsuarioController::class . ':TraerTodos');
@@ -30,7 +45,7 @@ $app->group('/usuarios', function (RouteCollectorProxy $group) {
     $group->post('[/]', \UsuarioController::class . ':CargarUno');
     //modificar
     //borrar
-  });
+  })->add($VerificarUserYPass);;
 
 $app->get('[/]', function (Request $request, Response $response) {    
     $response->getBody()->write("Slim Framework 4 PHP");
