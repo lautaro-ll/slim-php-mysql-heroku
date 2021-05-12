@@ -23,7 +23,7 @@ $app = AppFactory::create();
 $app->addErrorMiddleware(true, true, true);
 
 
-$VerificarUserYPass = function($request, $response, $next) {
+$VerificarUserYPass = function ($request, $response, $next) {
  
     $response->getBody()->write("Entré al MW!");
     $ArrayDeParametros = $request->getParsedBody();
@@ -45,7 +45,7 @@ $app->group('/usuarios', function (RouteCollectorProxy $group) {
     $group->post('[/]', \UsuarioController::class . ':CargarUno');
     //modificar
     //borrar
-  })->add($VerificarUserYPass);;
+  })->add($VerificarUserYPass);
 
 $app->get('[/]', function (Request $request, Response $response) {    
     $response->getBody()->write("Slim Framework 4 PHP");
