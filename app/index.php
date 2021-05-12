@@ -53,12 +53,12 @@ $app->group('/usuarios', function (RouteCollectorProxy $group) {
     $group->post('[/]', \UsuarioController::class . ':CargarUno');
     //modificar
     //borrar
-  })->add($mw);
+  });
 
 $app->get('[/]', function (Request $request, Response $response) {    
     $response->getBody()->write("Slim Framework 4 PHP");
     return $response;
 
-});
+})->add($mw);
 
 $app->run();
