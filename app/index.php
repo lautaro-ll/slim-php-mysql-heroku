@@ -1,14 +1,8 @@
 <?php
-error_reporting(-1);
-ini_set('display_errors', 1);
-
-use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Slim\Factory\AppFactory;
-use Slim\Routing\RouteCollectorProxy;
-use Slim\Routing\RouteContext;
+use Slim\Psr7\Response;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -36,7 +30,21 @@ $app->get('/', function (Request $request, Response $response, $args) {
 });
 
 $app->run();
+
+
+
 /*
+error_reporting(-1);
+ini_set('display_errors', 1);
+
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Server\RequestHandlerInterface;
+use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
+use Slim\Factory\AppFactory;
+use Slim\Routing\RouteCollectorProxy;
+use Slim\Routing\RouteContext;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 require_once './db/AccesoDatos.php';
