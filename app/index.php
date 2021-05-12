@@ -22,6 +22,13 @@ $app = AppFactory::create();
 // Add error middleware
 $app->addErrorMiddleware(true, true, true);
 
+$mw = function ($request, $response, $next) {
+  $response->getBody()->write('BEFORE');
+  $response = $next($request, $response);
+  $response->getBody()->write('AFTER');
+
+  return $response;
+};
 
 $VerificarUserYPass = function ($request, $response, $next) {
  
@@ -46,7 +53,7 @@ $app->group('/usuarios', function (RouteCollectorProxy $group) {
     $group->post('[/]', \UsuarioController::class . ':CargarUno');
     //modificar
     //borrar
-  })->add($VerificarUserYPass);
+  })->add($mw);
 
 $app->get('[/]', function (Request $request, Response $response) {    
     $response->getBody()->write("Slim Framework 4 PHP");
