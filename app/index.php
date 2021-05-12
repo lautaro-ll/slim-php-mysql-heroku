@@ -10,8 +10,8 @@ $app = AppFactory::create();
 
 $app->add(function (Request $request, RequestHandler $handler) {
     $response = $handler->handle($request);
+    $response->getBody()->write(' BEFFORRRRE');
     $existingContent = (string) $response->getBody();
-    $response->getBody()->write(' BEFFORE');
     $response = new Response();
     $response->getBody()->write('BEFORE ' . $existingContent);
 
