@@ -26,16 +26,16 @@ $app->addErrorMiddleware(true, true, true);
 $VerificarUserYPass = function ($request, $response, $next) {
  
     $response->getBody()->write("Entré al MW!");
-    $ArrayDeParametros = $request->getParsedBody();
+    /*$ArrayDeParametros = $request->getParsedBody();
     var_dump($ArrayDeParametros);
     $usuario=$ArrayDeParametros['usuario'];
     $clave=$ArrayDeParametros['clave'];
 
     if($usuario=="administrador" && $clave=="1234")
     {
-      $response->getBody()->write("<h3>Bienvenido $usuario </h3>");
+      $response->getBody()->write("<h3>Bienvenido $usuario </h3>");*/
       $response = $next($request, $response);
-    }
+    //}
   return $response;  
 };
 
